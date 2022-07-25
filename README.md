@@ -1,56 +1,42 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# School Library
 
-> Description the project.
-
+> A school library application designed with Ruby using OOP.
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
-
-## Live Demo (if available)
-
-[Live Demo Link](https://livedemo.com)
-
+- Ruby
+- VsCode
 
 ## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
 
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
+- ruby must be installed
+
 ### Setup
 
-### Install
+- clone the project repo or download zip into ypur computer.
+- open your terminal and cd into the project folder.
 
 ### Usage
 
+- to open the app in the ruby console type: `irb`
+
 ### Run tests
 
-### Deployment
+- to run the tests type `irb -r ./filename.rb`
 
 
+👤 **Tuğsem Saranlı**
 
-## Authors
+- GitHub: [@githubhandle](https://github.com/tugsem)
+- Twitter: [@twitterhandle](https://twitter.com/tugsemSaranli)
+- LinkedIn: [LinkedIn](https://linkedin.com/in/tugsem)
 
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
-
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 ## 🤝 Contributing
 
@@ -64,9 +50,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- @microverseinc
 
 ## 📝 License
 
