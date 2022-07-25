@@ -1,7 +1,7 @@
-require "./person.rb"
+require './person'
 
 class Person
-  def initialize(name = "Unknown", parent_permission = true, age)
+  def initialize(age, name = 'Unknown', parent_permission: true)
     @id = Random.rand(1..1000)
     @name = name
     @age = age
@@ -9,10 +9,7 @@ class Person
   end
 
   attr_reader :id
-  attr_reader :name
-  attr_reader :age
-  attr_writer :name
-  attr_writer :age
+  attr_accessor :name, :age
 
   def can_use_services?
     (is_of_age? || @parent_permission == true)
@@ -20,17 +17,15 @@ class Person
 
   private
 
-  def is_of_age?
-    if @age >= 18
-      return true
-    end
+  def of_age?
+    (return unless @age >= 18)
   end
 end
 
-person_1 = Person.new("p", false, 18)
-person_2 = Person.new("t", true, 12)
-person_3 = Person.new("z", false, 10)
+person1 = Person.new('p', false, 18)
+person2 = Person.new('t', true, 12)
+person3 = Person.new('z', false, 10)
 
-person_1.can_use_services?
-person_2.can_use_services?
-person_3.can_use_services?
+person1.can_use_services?
+person2.can_use_services?
+person3.can_use_services?
