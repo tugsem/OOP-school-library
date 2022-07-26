@@ -6,6 +6,7 @@ class Person < Nameable
     @name = name
     @age = age
     @parent_permission = parent_permission
+    super()
   end
 
   attr_reader :id
@@ -15,12 +16,15 @@ class Person < Nameable
     (is_of_age? || @parent_permission == true)
   end
 
-   private def of_age?
+  private
+
+  def of_age?
     (return unless @age >= 18)
   end
 
-  public def correct_name
+  public
+
+  def correct_name
     @name
   end
-
 end
