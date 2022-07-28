@@ -3,8 +3,8 @@ require './person'
 class Student < Person
   attr_reader :classroom
 
-  def initialize(classroom)
-    super('Unknown', true, 13)
+  def initialize(age, name, parent_permission = true, classroom)
+    super(age, name, parent_permission)
     @classroom = classroom
   end
 
@@ -17,3 +17,6 @@ class Student < Person
     classroom.students.push(self) unless classroom.students.include?(self)
   end
 end
+
+st = Student.new(12, 'Jack', false, '9-A')
+st.play_hooky
