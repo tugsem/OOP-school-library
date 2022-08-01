@@ -14,12 +14,12 @@ class App
   end
 
   def list_all_books
-    if @books.length.positive?
+    if @books.empty?
+      puts 'List is empty'
+    else
       @books.each do |book|
         puts "Title: '#{book.title}', Author: #{book.author}"
       end
-    else
-      puts 'List is empty'
     end
     menu
   end
@@ -96,8 +96,10 @@ class App
   def create_a_book
     print 'Title:'
     title = gets.chomp
+    check_name(title)
     print 'Author:'
     author = gets.chomp
+    check_name(author)
     book = Book.new(title, author)
     @books.push(book)
     print 'Book created successfully'
