@@ -14,23 +14,23 @@ class App
   end
 
   def list_all_books
-    if @books.length.positive?
+    if @books.empty?
+      puts 'List is empty'
+    else
       @books.each do |book|
         puts "Title: '#{book.title}', Author: #{book.author}"
       end
-    else
-      puts 'List is empty'
     end
     menu
   end
 
   def list_all_people
-    if @people.length.positive?
+    if @people.empty?
+      puts 'No people on the list'
+    else
       @people.each do |person|
         puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
-    else
-      puts 'No people on the list'
     end
     menu
   end
@@ -47,14 +47,31 @@ class App
     menu
   end
 
+  def check_age(age)
+    while age < 1
+      print 'Please enter a valid age: '
+      age = gets.chomp.to_i
+    end
+  end
+
+  def check_name(name)
+    while name == ''
+      print 'Pleas enter a valid name: '
+      name = gets.chomp.to_s
+    end
+  end
+
   def create_student
-    print 'Age:'
+    print 'Age: '
     age = gets.chomp.to_i
+    check_age(age)
+
     print 'Name:'
-    name = gets.chomp
+    name = gets.chomp.to_s
+    check_name(name)
     print 'Has parent permisson? [Y/N]:'
     permission = gets.chomp
-    student = Student.new(age, name, permission)
+    student = Student.new(age, name, parent_permission: permission)
     @people.push(student)
     print 'Person created successfully'
     puts
@@ -63,8 +80,11 @@ class App
   def create_teacher
     print 'Age:'
     age = gets.chomp.to_i
+    check_age(age)
+
     print 'Name:'
-    name = gets.chomp
+    name = gets.chomp.to_s
+    check_name(name)
     print 'Specialization:'
     spec = gets.chomp
     teacher = Teacher.new(age, name, spec)
@@ -76,8 +96,10 @@ class App
   def create_a_book
     print 'Title:'
     title = gets.chomp
+    check_name(title)
     print 'Author:'
     author = gets.chomp
+    check_name(author)
     book = Book.new(title, author)
     @books.push(book)
     print 'Book created successfully'

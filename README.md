@@ -37,6 +37,19 @@ To get a local copy up and running follow these simple example steps.
 - Twitter: [@twitterhandle](https://twitter.com/tugsemSaranli)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/tugsem)
 
+👤 **Hammad Siddique**
+
+- [GitHub](https://github.com/HammadSiddique)
+- [Twitter](https://twitter.com/hs_devv)
+- [LinkedIn](https://www.linkedin.com/in/-hammadsiddique/)
+
+
+👤 **Ibrahim Ahmat**
+
+- GitHub: [@ibr5500](https://github.com/ibr5500)
+- Twitter: [@ibr_ahmat](https://twitter.com/ibr_ahmat)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/ibrahim-ahmat/)
+
 
 ## 🤝 Contributing
 
