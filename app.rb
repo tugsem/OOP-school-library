@@ -25,12 +25,12 @@ class App
   end
 
   def list_all_people
-    if @people.length.positive?
+    if @people.empty?
+      puts 'No people on the list'
+    else
       @people.each do |person|
         puts "[#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
       end
-    else
-      puts 'No people on the list'
     end
     menu
   end
@@ -55,9 +55,9 @@ class App
   end
 
   def check_name(name)
-    while name.nil?
+    while name == ''
       print 'Pleas enter a valid name: '
-      name = gets.chomp
+      name = gets.chomp.to_s
     end
   end
 
@@ -67,7 +67,7 @@ class App
     check_age(age)
 
     print 'Name:'
-    name = gets.chomp
+    name = gets.chomp.to_s
     check_name(name)
     print 'Has parent permisson? [Y/N]:'
     permission = gets.chomp
@@ -83,7 +83,7 @@ class App
     check_age(age)
 
     print 'Name:'
-    name = gets.chomp
+    name = gets.chomp.to_s
     check_name(name)
     print 'Specialization:'
     spec = gets.chomp
