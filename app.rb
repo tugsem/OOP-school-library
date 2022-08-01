@@ -54,6 +54,13 @@ class App
     end
   end
 
+  def check_name(name)
+    while name.nil?
+      print 'Pleas enter a valid name: '
+      name = gets.chomp
+    end
+  end
+
   def create_student
     print 'Age: '
     age = gets.chomp.to_i
@@ -61,6 +68,7 @@ class App
 
     print 'Name:'
     name = gets.chomp
+    check_name(name)
     print 'Has parent permisson? [Y/N]:'
     permission = gets.chomp
     student = Student.new(age, name, parent_permission: permission)
@@ -76,6 +84,7 @@ class App
 
     print 'Name:'
     name = gets.chomp
+    check_name(name)
     print 'Specialization:'
     spec = gets.chomp
     teacher = Teacher.new(age, name, spec)
