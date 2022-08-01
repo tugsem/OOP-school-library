@@ -47,9 +47,18 @@ class App
     menu
   end
 
+  def check_age(age)
+    while age < 1
+      print 'Please enter a valid age: '
+      age = gets.chomp.to_i
+    end
+  end
+
   def create_student
-    print 'Age:'
+    print 'Age: '
     age = gets.chomp.to_i
+    check_age(age)
+
     print 'Name:'
     name = gets.chomp
     print 'Has parent permisson? [Y/N]:'
@@ -63,6 +72,8 @@ class App
   def create_teacher
     print 'Age:'
     age = gets.chomp.to_i
+    check_age(age)
+
     print 'Name:'
     name = gets.chomp
     print 'Specialization:'
