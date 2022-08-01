@@ -20,7 +20,7 @@ module Methods
   end
 
   def input_is_valid?(input)
-    if %w[1 2 3 4 5 6 7].include?(input)
+    if %w(1 2 3 4 5 6 7).include?(input)
       selected_option input
     else
       puts "#{input} isn't in the list! Try again"
