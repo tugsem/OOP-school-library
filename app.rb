@@ -5,6 +5,8 @@ require './rental'
 require './methods'
 require 'json'
 
+# rubocop:disable Metrics/ClassLength
+
 class App
   include Methods
 
@@ -15,13 +17,31 @@ class App
     load_data
   end
 
+  # rubocop:disable Metrics/PerceivedComplexity
   def load_data
-    books = JSON.parse(File.read('books.json'))
-    books.each do |book|
-      @books.push(Book.new(book['Title'], book['Author']))
+    if File.empty?('books.json')
+      puts 'List is empty'
+    else
+      books = JSON.parse(File.read('books.json'))
+      books.each do |book|
+        @books.push(Book.new(book['Title'], book['Author']))
+      end
+    end
+    if File.empty?('people.json')
+      puts 'List is empty'
+    else
+      people = JSON.parse(File.read('people.json'))
+      people.each do |person|
+        if person['Class'] == 'Student'
+          @people.push(Student.new(person['Age'], person['Name'], person['parent_permission']))
+        else
+          @people.push(Teacher.new(person['Age'], person['Name'], person['spec']))
+        end
+      end
     end
   end
 
+  # rubocop:enable Metrics/PerceivedComplexity
   def list_all_books
     if @books.empty?
       puts 'List is empty'
@@ -164,11 +184,16 @@ class App
 
   def save_data
     books = []
-
+    people = []
     @books.each do |book|
       books.push({ Title: book.title, Author: book.author })
     end
-
+    @people.each do |person|
+      people.push({ Class: person.class, Name: person.name, Age: person.age })
+    end
     File.write('books.json', JSON.generate(books))
+    File.write('people.json', JSON.generate(people))
   end
 end
+
+# rubocop:enable Metrics/ClassLength
