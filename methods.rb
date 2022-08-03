@@ -45,7 +45,6 @@ module Methods
       list_rentals
     when '7'
       save_data
-    else
       puts 'Thank you for using this app!'
       exit
     end
