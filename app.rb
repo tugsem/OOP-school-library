@@ -3,6 +3,7 @@ require './teacher'
 require './book'
 require './rental'
 require './methods'
+require 'json'
 
 class App
   include Methods
@@ -11,6 +12,14 @@ class App
     @books = []
     @people = []
     @rentals = []
+    load_data
+  end
+
+  def load_data
+    books = JSON.parse(File.read('books.json'))
+    books.each do |book|
+      @books.push(Book.new(book['Title'], book['Author']))
+    end
   end
 
   def list_all_books
@@ -151,5 +160,15 @@ class App
     end
     puts
     menu
+  end
+
+  def save_data
+    books = []
+
+    @books.each do |book|
+      books.push({ Title: book.title, Author: book.author })
+    end
+
+    File.write('books.json', JSON.generate(books))
   end
 end
