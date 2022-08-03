@@ -28,6 +28,7 @@ module Methods
     end
   end
 
+  # rubocop:disable Metrics/CyclomaticComplexity
   def selected_option(input)
     case input
     when '1'
@@ -42,9 +43,11 @@ module Methods
       create_a_rental
     when '6'
       list_rentals
-    else
+    when '7'
+      save_data
       puts 'Thank you for using this app!'
       exit
     end
   end
+  # rubocop:enable Metrics/CyclomaticComplexity
 end

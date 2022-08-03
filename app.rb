@@ -3,6 +3,9 @@ require './teacher'
 require './book'
 require './rental'
 require './methods'
+require 'json'
+
+# rubocop:disable Metrics/ClassLength
 
 class App
   include Methods
@@ -11,8 +14,51 @@ class App
     @books = []
     @people = []
     @rentals = []
+    load_data
+    load_rentals
   end
 
+  # rubocop:disable Metrics/PerceivedComplexity
+  def load_data
+    if File.empty?('books.json')
+      puts 'List is empty'
+    else
+      books = JSON.parse(File.read('books.json'))
+      books.each do |book|
+        @books.push(Book.new(book['Title'], book['Author']))
+      end
+    end
+    if File.empty?('people.json')
+      puts 'List is empty'
+    else
+      people = JSON.parse(File.read('people.json'))
+      people.each do |person|
+        if person['Class'] == 'Student'
+          @people.push(Student.new(person['Age'], person['Name'], person['parent_permission']))
+        else
+          @people.push(Teacher.new(person['Age'], person['Name'], person['spec']))
+        end
+      end
+    end
+  end
+
+  def load_rentals
+    if File.empty?('rentals.json')
+      puts 'List is empty'
+    else
+      rentals = JSON.parse(File.read('rentals.json'))
+      rentals.each do |rental|
+        @rentals.push(Rental.new(rental['date'], @books.select do |book|
+                                                   book.title == rental['Book']
+                                                 end [0], @people.select do |person|
+                                                            person.name == rental['Name']
+                                                          end [0]))
+      end
+
+    end
+  end
+
+  # rubocop:enable Metrics/PerceivedComplexity
   def list_all_books
     if @books.empty?
       puts 'List is empty'
@@ -141,6 +187,7 @@ class App
 
   def list_rentals
     if @rentals.length.positive?
+      @people.each { |person| puts "id: #{person.id}, name: #{person.name}" }
       puts 'ID of person:'
       id = gets.chomp.to_i
       puts 'Rentals:'
@@ -152,4 +199,25 @@ class App
     puts
     menu
   end
+
+  def save_data
+    books = []
+    people = []
+    rentals = []
+    @books.each do |book|
+      books.push({ Title: book.title, Author: book.author })
+    end
+    @people.each do |person|
+      people.push({ Class: person.class, Name: person.name, Age: person.age })
+    end
+    @rentals.each do |rent|
+      rentals.push({ date: rent.date, Book: rent.book.title, Name: rent.person.name })
+    end
+
+    File.write('books.json', JSON.generate(books))
+    File.write('people.json', JSON.generate(people))
+    File.write('rentals.json', JSON.generate(rentals))
+  end
 end
+
+# rubocop:enable Metrics/ClassLength
