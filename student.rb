@@ -2,6 +2,7 @@ require './person'
 
 class Student < Person
   attr_reader :classroom
+  attr_accessor :parent_permission
 
   def initialize(age, name, permission, classroom = 'Unknown')
     super(age, name, parent_permission: permission)
